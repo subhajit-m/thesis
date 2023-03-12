@@ -1,10 +1,9 @@
 from torchvision.transforms import Compose, Resize, ToTensor
-from einops import rearrange, reduce, repeat
+from einops import rearrange
 import torch
 
 
 def patchify(images, num_patches):
-    # patches = rearrange(images, 'b c (h s1) (w s2) -> b (h w) (s1 s2 c)', s1=patch_size, s2=patch_size)
     patches = rearrange(
         images, 'b c (h s1) (w s2) -> b (s1 s2) (h w c)', s1=num_patches, s2=num_patches)
     return patches

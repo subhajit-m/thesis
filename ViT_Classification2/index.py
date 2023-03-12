@@ -1,6 +1,7 @@
 # references
 # https://medium.com/mlearning-ai/vision-transformers-from-scratch-pytorch-a-step-by-step-guide-96c3313c2e0c
 # https://towardsdatascience.com/implementing-visualttransformer-in-pytorch-184f9f16f632
+# https://stackoverflow.com/questions/53673575/in-place-shuffle-torch-tensor-in-the-order-of-a-numpy-ndarray
 
 
 from dataset import Dataset
@@ -26,7 +27,7 @@ def trainer():
           f"({torch.cuda.get_device_name(device)})" if torch.cuda.is_available() else "")
     # model = MyViT(image_dim, n_patches=7, n_blocks=2, hidden_d=8, n_heads=2, out_d=10).to(device)
     model = MyViT(image_dim, n_patches=16, n_blocks=2,
-                  hidden_d=8, n_heads=2, out_d=10).to(device)
+                  hidden_d=8, n_heads=2, out_d=10, mask_ratio=.75).to(device)
 
     N_EPOCHS = 5
     LR = 0.005
